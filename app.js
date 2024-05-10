@@ -66,10 +66,22 @@ const phones = [
 
 ];
 
-let selectValArr =[];
+
+
+let selectValArr ;
+ selectValArr =[];
+
+let getItems =JSON.parse( localStorage.getItem('CartItem'));
+console.log(getItems);
+if(getItems === null){
+    selectValArr = [];
+}else{
+    getItems = selectValArr
+}
+
 
 let div=document.querySelector('.container');
-// phones.qauantity = 1;
+
 
 for (let i=0;i<phones.length;i++){
 
@@ -93,21 +105,22 @@ function addtocart(index){
 // console.log(phones[index]);
 
 
-// if(selectValArr.includes(phones[index])){
-// phones[index].qauantity += 1
+if(selectValArr.includes(phones[index])){
+phones[index].quantity += 1
 
-// }else{
-//     phones[index].qauantity =1
-//     selectValArr.push(phones[index])
-// }
-// console.log(selectValArr);
+}else{
+    phones[index].quantity =1
+    selectValArr.push(phones[index])
+}
+console.log(selectValArr);
 
 }
 
 function cartDetails(){
 window.location = 'cart.html'
-window.location.reload = 'cart.html'
 
+let sendItem = localStorage.setItem('CartItem',JSON.stringify(selectValArr));
+console.log(sendItem);
 
 }
 
